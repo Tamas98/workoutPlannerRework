@@ -1,23 +1,22 @@
-package controll;
+package controll.fileHandler;
 
 import com.google.gson.reflect.TypeToken;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import lombok.NoArgsConstructor;
+
+import lombok.Data;
 import modell.Exercise;
 
-import javafx.scene.control.TableView;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@Data
 public class ExerciseFileHandler implements FileHandler {
 
-    private Map<String, ArrayList<Exercise>> allTimeExercises;
+    protected Map<String, ArrayList<Exercise>> allTimeExercises = new HashMap<>();
 
-    private ArrayList<Exercise> dailyExerciseList;
+    protected ArrayList<Exercise> dailyExerciseList;
 
     private Type type = new TypeToken<Map<String, ArrayList<Exercise>>>(){}.getType();
 
@@ -32,7 +31,7 @@ public class ExerciseFileHandler implements FileHandler {
 
         try{
             writer = new FileWriter(Exercise.class.getResource("/Assets/exercises.json").getFile());
-            log.info("Reader successfully created");
+            log.info("Writer successfully created");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             log.error("A problem has occurred while opening the reader");
@@ -106,58 +105,6 @@ public class ExerciseFileHandler implements FileHandler {
         }
     }
 
-    @Override
-    public void getDaily(String key) {
-        if(this.allTimeExercises.get(key) != null)
-            dailyExerciseList = this.allTimeExercises.get(key);
-        else
-            dailyExerciseList = new ArrayList<>();
-    }
-
-    @Override
-    public <T> void addNewElement(T objectToAdd,String key) {
-        this.dailyExerciseList.add((Exercise)objectToAdd);
-
-        this.allTimeExercises.put(key,this.dailyExerciseList);
-
-        System.out.println(this.allTimeExercises);
-
-        writeToJson();
-    }
-
-
-    @Override
-    public void delElement(TableView tableView,String key) {
-
-        ObservableList<Exercise> alldata,selectedData;
-
-        alldata = tableView.getItems();
-
-        selectedData = tableView.getSelectionModel().getSelectedItems();
-
-        Exercise exerc = (Exercise)tableView.getSelectionModel().getSelectedItem();
-
-        dailyExerciseList.remove(exerc);
-
-        this.allTimeExercises.put(key, this.dailyExerciseList);
-
-        writeToJson();
-
-        selectedData.forEach(alldata::remove);
-    }
-
-    @Override
-    public void fillTable(TableView tableView) {
-        tableView.getItems().clear();
-
-        ObservableList<Exercise> current = FXCollections.observableArrayList(dailyExerciseList);
-
-        tableView.setItems(current);
-
-        log.info("Table successfully filled");
-
-    }
-
     private Map<String, ArrayList<Exercise>> ifNullSetup(Map<String, ArrayList<Exercise>> value){
 
         if(value == null){
@@ -171,5 +118,19 @@ public class ExerciseFileHandler implements FileHandler {
 
     }
 
-    public void createNewInstance(String name,String reps) {}
+  /*  public Map<String, ArrayList<Exercise>> getAllTimeExercises() {
+        return allTimeExercises;
+    }
+
+    public void setAllTimeExercises(Map<String, ArrayList<Exercise>> allTimeExercises) {
+        this.allTimeExercises = allTimeExercises;
+    }
+
+    public ArrayList<Exercise> getDailyExerciseList() {
+        return dailyExerciseList;
+    }
+
+    public void setDailyExerciseList(ArrayList<Exercise> dailyExerciseList) {
+        this.dailyExerciseList = dailyExerciseList;
+    }*/
 }

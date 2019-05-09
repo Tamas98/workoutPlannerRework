@@ -1,7 +1,9 @@
-package controll;
+package controll.fileHandler;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,14 +24,5 @@ public interface FileHandler {
     void readFromJson();
 
     void closeReader(Reader reader);
-
-    void getDaily(String key);
-
-    <T> void addNewElement(T objectToAdd,String key);
-
-    void delElement(TableView tableView,String key);
-
-    void fillTable(TableView tableView);
-
 
 }
