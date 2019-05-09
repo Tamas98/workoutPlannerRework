@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/ExercStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controll.ExerciseController">
+   <top>
+      <MenuBar prefHeight="7.0" prefWidth="600.0" style="-fx-background-color: grey;" styleClass="menu-item" stylesheets="@../Styles/ExercStyle.css" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="view">
+               <items>
+                  <CheckMenuItem fx:id="editTableButton" mnemonicParsing="false" onAction="#setEditable" text="Edit Table" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <ListView id="listView" fx:id="list" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Styles/ExercStyle.css" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <VBox alignment="TOP_CENTER" spacing="20.0">
+         <children>
+            <TableView id="table" fx:id="table" editable="true" maxWidth="-Infinity" prefHeight="248.0" prefWidth="432.0" style="-fx-selection-bar: black; -fx-background-color: grey;" styleClass="table-view" stylesheets="@../Styles/ExercStyle.css" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="tableColumn" prefWidth="140.0" style="-fx-selection-bar: black;" text="Name">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="name" />
+                  </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="0.0" prefWidth="85.0" resizable="false" text="Reps">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="reps" />
+                    </cellValueFactory>
+                </TableColumn>
+              </columns>
+            </TableView>
+            <DatePicker fx:id="datePicker" onAction="#setDate" styleClass="date-picker" stylesheets="@../Styles/ExercStyle.css">
+               <effect>
+                  <DropShadow />
+               </effect></DatePicker>
+            <HBox fx:id="editTable" alignment="TOP_CENTER" prefHeight="37.0" prefWidth="400.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="nameField" alignment="CENTER" prefHeight="25.0" prefWidth="210.0" promptText="Exercise name">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <TextField fx:id="repsField" alignment="CENTER" prefHeight="25.0" prefWidth="57.0" promptText="Reps">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <Button mnemonicParsing="false" onAction="#AddElement" text="Add">
+                     <effect>
+                        <InnerShadow />
+                     </effect></Button>
+                  <Button fx:id="delButton" mnemonicParsing="false" onAction="#deleteElement" text="Delete">
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

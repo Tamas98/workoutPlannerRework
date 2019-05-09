@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controll.PrimaryController">
+   <top>
+      <MenuBar maxHeight="100.0" prefHeight="0.0" prefWidth="600.0" style="-fx-background-color: grey;" styleClass="menu-item" stylesheets="@../Styles/PrimaryStyle.css" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox id="main" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" stylesheets="@../Styles/PrimaryStyle.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label id="message" stylesheets="@../Styles/PrimaryStyle.css" text="Welcome in your Workout Planner!" textFill="#f80d0dbd">
+               <font>
+                  <Font name="Serif Bold" size="27.0" />
+               </font>
+            </Label>
+            <Button id="button" fx:id="workoutButton" mnemonicParsing="false" onAction="#openWorkout" prefHeight="40.0" prefWidth="238.0" stylesheets="@../Styles/PrimaryStyle.css" text="Workout Planner" textFill="#37fa16">
+               <font>
+                  <Font name="SansSerif Bold" size="21.0" />
+               </font>
+            </Button>
+            <Button id="button" fx:id="dietButton" mnemonicParsing="false" onAction="#openDiet" prefHeight="40.0" prefWidth="238.0" stylesheets="@../Styles/PrimaryStyle.css" text="Diet Planner" textFill="#4315fc">
+               <font>
+                  <Font name="SansSerif Bold" size="21.0" />
+               </font>
+            </Button>
+            <Button id="button" fx:id="exitButton" mnemonicParsing="false" onAction="#exitClicked" prefHeight="42.0" prefWidth="237.0" stylesheets="@../Styles/PrimaryStyle.css" text="Exit" textFill="#f50101">
+               <font>
+                  <Font name="SansSerif Bold" size="21.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

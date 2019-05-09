@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="765.0" stylesheets="@../Styles/ExercStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controll.DietController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <RadioMenuItem fx:id="addNewItem" mnemonicParsing="false" onAction="#showAddElement" text="Add new element">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="editType" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem fx:id="chooseItem" mnemonicParsing="false" onAction="#showChooseBox" text="Choose from the list" toggleGroup="$editType" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="460.0" prefWidth="458.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView id="table-view" fx:id="foodTable" prefHeight="200.0" prefWidth="680.0" styleClass="table-views" stylesheets="@../Styles/ExercStyle.css">
+              <columns>
+                <TableColumn id="tableColumn" prefWidth="111.0" text="Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn id="tableColumn" prefWidth="55.0" text="g/dkg">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="eated" />
+                      </cellValueFactory>
+                  </TableColumn>
+                <TableColumn id="tableColumn" editable="false" prefWidth="75.0" text="Calories">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="calories" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn id="tableColumn" prefWidth="121.0" text="Carbohydrate">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="carbo" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn id="tableColumn" prefWidth="65.0" text="Protein">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="protein" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn id="tableColumn" prefWidth="63.0" text="Sugar">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="sugar" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn id="tableColumn" prefWidth="74.0" text="Fat">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="fat" />
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+            </TableView>
+            <DatePicker fx:id="datePicker" onAction="#datePicked" styleClass="date-picker" stylesheets="@../Styles/ExercStyle.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </DatePicker>
+            <HBox fx:id="chooseBox" alignment="CENTER" prefHeight="30.0" prefWidth="580.0" spacing="10.0" visible="false">
+               <children>
+                  <TextField fx:id="nameField" prefHeight="25.0" prefWidth="112.0" promptText="Name">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <TextField fx:id="eatField" alignment="CENTER" prefHeight="25.0" prefWidth="67.0" promptText="Amount">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <ChoiceBox fx:id="unitSelector" prefHeight="25.0" prefWidth="52.0" />
+               </children>
+            </HBox>
+            <Button fx:id="calcAndAddButton" mnemonicParsing="false" onAction="#calculateAndAdd" text="Calculate and Add" visible="false">
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+            <Label fx:id="message" text="Welcome in the Diet Planner" textFill="RED" underline="true">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
+            <HBox fx:id="newFoodBox" prefHeight="32.0" prefWidth="565.0" spacing="10.0" visible="false">
+               <children>
+                  <TextField fx:id="newName" prefHeight="25.0" prefWidth="152.0" promptText="Name">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <TextField fx:id="calorieField" alignment="CENTER" prefHeight="25.0" prefWidth="76.0" promptText="Calories">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <TextField fx:id="carboField" alignment="CENTER" prefHeight="25.0" prefWidth="67.0" promptText="Carbo">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <TextField fx:id="sugarField" alignment="CENTER" prefHeight="25.0" prefWidth="64.0" promptText="Sugar">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <TextField fx:id="proteinField" alignment="CENTER" prefHeight="25.0" prefWidth="72.0" promptText="Protein">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <TextField fx:id="fatField" alignment="CENTER" prefHeight="25.0" prefWidth="46.0" promptText="Fat">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addElement" text="Add" visible="false">
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <ListView id="listView" fx:id="foodList" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Styles/ExercStyle.css" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
