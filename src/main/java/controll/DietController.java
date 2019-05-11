@@ -96,7 +96,7 @@ public class DietController extends FoodActivity implements Initializable {
 
         fillTable(foodTable);
 
-        listSetup(foodList,nameField,Food.basicFoodsArrayList);
+        listSetup(foodList,nameField,Food.basicFoodsArrayList.toArray());
     }
 
     @FXML

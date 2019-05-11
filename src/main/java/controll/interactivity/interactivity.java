@@ -20,7 +20,7 @@ public interface interactivity {
 
     void delElement(TableView tableView, String key);
 
-    default <T> void listSetup(ListView listView, TextField textField, T fillWith){
+    default <T> void listSetup(ListView listView, TextField textField, T[] fillWith){
         listView.getItems().addAll(fillWith);
 
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

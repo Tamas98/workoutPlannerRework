@@ -2,6 +2,7 @@ package modell;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,12 @@ public class Food {
 
     private double sugar;
 
-    public static ArrayList<Food> basicFoodsArrayList;
+    public static ArrayList<Food> basicFoodsArrayList
+            = new ArrayList<>(Arrays.asList(
+                    new Food("Fish",1,1,1,1,1,1),
+                    new Food("Chicken",1,1,1,1,1,1)
+
+    ));
 
 
 }
