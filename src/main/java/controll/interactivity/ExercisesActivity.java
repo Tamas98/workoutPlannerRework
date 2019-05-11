@@ -1,21 +1,25 @@
 package controll.interactivity;
 
-import controll.fileHandler.ExerciseFileHandler;
+import controll.fileHandler.JsonWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import lombok.Setter;
 import modell.Exercise;
 
 import java.util.ArrayList;
+import java.util.Map;
 
-public class ExercisesActivity extends ExerciseFileHandler implements interactivity{
+public class ExercisesActivity implements interactivity{
 
-    public ExercisesActivity(){
-        readFromJson();
-    }
+    public Map<String,ArrayList<Exercise>> allTimeExercises;
+
+    public ArrayList<Exercise> dailyExerciseList;
+
+    private JsonWriter jsonWriter = new JsonWriter("/Assets/exercises.json");
 
     @Override
     public void listSetup(ListView listView, TextField textField){
@@ -44,7 +48,7 @@ public class ExercisesActivity extends ExerciseFileHandler implements interactiv
 
         allTimeExercises.put(key,dailyExerciseList);
 
-        writeToJson();
+        jsonWriter.writeToJson(allTimeExercises);
     }
 
 
@@ -63,7 +67,7 @@ public class ExercisesActivity extends ExerciseFileHandler implements interactiv
 
         allTimeExercises.put(key,dailyExerciseList);
 
-        writeToJson();
+        jsonWriter.writeToJson(allTimeExercises);
 
         selectedData.forEach(alldata::remove);
     }
@@ -78,5 +82,10 @@ public class ExercisesActivity extends ExerciseFileHandler implements interactiv
 
         log.info("Table successfully filled");
 
+    }
+
+    @Override
+    public void fillContainer(Object allTimeExercises) {
+        this.allTimeExercises = (Map<String, ArrayList<Exercise>>) allTimeExercises;
     }
 }

@@ -2,6 +2,8 @@ package modell;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +27,6 @@ public class Food {
     private double sugar;
 
     public static ArrayList<Food> basicFoodsArrayList;
+
+
 }

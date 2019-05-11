@@ -2,6 +2,10 @@ package modell;
 
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,4 +23,5 @@ public class Exercise {
 
     public static String[] exerciseList = {"Push-ups","Supermans","Bent Knee Push-ups","Plank","Squat Jumps",
             "Forward Lunge","Glute Bridge","Hip-Rotations","Side Lunge","Side Plank","Single Leg Stand"};
+
 }
