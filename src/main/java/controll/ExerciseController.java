@@ -5,6 +5,8 @@ import controll.fileHandler.FileHandler;
 import controll.fileHandler.JsonReader;
 import controll.fileHandler.ReadFile;
 import controll.interactivity.ExercisesActivity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -26,8 +28,6 @@ public class ExerciseController extends ExercisesActivity implements Initializab
     private Type token = new TypeToken<Map<String, ArrayList<Exercise>>>(){}.getType();
 
     private ReadFile jsonReader = new JsonReader("/Assets/exercises.json",token);
-
-   // private ExercisesActivity activity = new ExercisesActivity();
 
     @FXML
     private ListView<String> list;
@@ -72,7 +72,7 @@ public class ExerciseController extends ExercisesActivity implements Initializab
 
         fillTable(table);
 
-        listSetup(list,nameField);
+        listSetup(list,nameField,Exercise.exerciseList);
 
     }
 
@@ -113,5 +113,6 @@ public class ExerciseController extends ExercisesActivity implements Initializab
         if(allTimeExercises == null)
             allTimeExercises=new HashMap<>();
     }
+
 
 }

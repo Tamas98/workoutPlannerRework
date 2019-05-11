@@ -1,14 +1,30 @@
 package controll;
 
+import com.google.gson.reflect.TypeToken;
+import controll.fileHandler.JsonReader;
+import controll.fileHandler.ReadFile;
+import controll.interactivity.FoodActivity;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import modell.Food;
 
+import java.lang.reflect.Type;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class DietController implements Initializable {
+public class DietController extends FoodActivity implements Initializable {
+
+    private Type token = new TypeToken<Map<String, ArrayList<Food>>>(){}.getType();
+
+    private ReadFile jsonReader = new JsonReader("/Assets/food.json",token);
+
+
     @FXML
     private DatePicker datePicker;
 
@@ -69,6 +85,51 @@ public class DietController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        allTimeMenu = jsonReader.readFromJson(allTimeMenu);
 
+        readInBasicFoods();
+
+        ifNull();
+
+        datePicker.setValue(LocalDate.now());
+        getDaily(LocalDate.now().toString());
+
+        fillTable(foodTable);
+
+        listSetup(foodList,nameField,Food.basicFoodsArrayList);
+    }
+
+    @FXML
+    private void datePicked(){}
+
+    @FXML
+    private void calculateAndAdd(){}
+
+    @FXML
+    private void addElement(){}
+
+    public void showChooseBox() {
+        if(chooseItem.isSelected()){
+            newFoodBox.setVisible(false);
+            addButton.setVisible(false);
+            chooseBox.setVisible(true);
+            calcAndAddButton.setVisible(true);
+            message.setText("Choose the element from the list!");
+        }
+    }
+
+    public void showAddElement() {
+        if(addNewItem.isSelected()) {
+            chooseBox.setVisible(false);
+            calcAndAddButton.setVisible(false);
+            newFoodBox.setVisible(true);
+            addButton.setVisible(true);
+            message.setText("Enter the foods propeties ");
+        }
+    }
+
+    private void ifNull(){
+        if(allTimeMenu == null)
+            allTimeMenu=new HashMap<>();
     }
 }

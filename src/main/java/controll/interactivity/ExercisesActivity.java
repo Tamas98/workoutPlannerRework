@@ -3,11 +3,7 @@ package controll.interactivity;
 import controll.fileHandler.JsonWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import lombok.Setter;
 import modell.Exercise;
 
 import java.util.ArrayList;
@@ -21,18 +17,6 @@ public class ExercisesActivity implements interactivity{
 
     private JsonWriter jsonWriter = new JsonWriter("/Assets/exercises.json");
 
-    @Override
-    public void listSetup(ListView listView, TextField textField){
-        listView.getItems().addAll(Exercise.exerciseList);
-
-        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
-        listView.getSelectionModel().selectedItemProperty().addListener((p,oldval,nwval) ->
-                textField.setText(String.valueOf(listView.getSelectionModel().getSelectedItem())));
-
-        log.info("Successfully filled up the given list");
-
-    }
 
     @Override
     public void getDaily(String key) {
@@ -73,7 +57,7 @@ public class ExercisesActivity implements interactivity{
     }
 
     @Override
-    public void fillTable(TableView tableView) {
+    public <T> void fillTable(TableView tableView) {
         tableView.getItems().clear();
 
         ObservableList<Exercise> current = FXCollections.observableArrayList(dailyExerciseList);
@@ -81,11 +65,5 @@ public class ExercisesActivity implements interactivity{
         tableView.setItems(current);
 
         log.info("Table successfully filled");
-
-    }
-
-    @Override
-    public void fillContainer(Object allTimeExercises) {
-        this.allTimeExercises = (Map<String, ArrayList<Exercise>>) allTimeExercises;
     }
 }

@@ -1,8 +1,12 @@
 package controll.interactivity;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import modell.Exercise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,16 +14,22 @@ public interface interactivity {
 
     Logger log = LoggerFactory.getLogger(interactivity.class);
 
-    void fillContainer(Object object);
-
     void getDaily(String key);
 
     <T> void addNewElement(T objectToAdd,String key);
 
     void delElement(TableView tableView, String key);
 
-    void fillTable(TableView tableView);
+    default <T> void listSetup(ListView listView, TextField textField, T fillWith){
+        listView.getItems().addAll(fillWith);
 
-    void listSetup(ListView listView, TextField textField);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+        listView.getSelectionModel().selectedItemProperty().addListener((p,oldval,nwval) ->
+                textField.setText(String.valueOf(listView.getSelectionModel().getSelectedItem())));
+
+        log.info("Successfully filled up the given list");
+    }
+
+    <T> void fillTable(TableView tableView);
 }
