@@ -194,7 +194,7 @@ public class DietController extends FoodActivity implements Initializable {
 
         Window window = new Window();
 
-        todaysFoods = logic.evaulateDay(allTimeMenu.get(datePicker.getValue().toString()));
+        todaysFoods = logic.evaulateDay(dailyFoodList);
 
         Stage stage = window.createWindow("/GUI/DietEvaulationWindow.fxml","Exercises on " + datePicker.getValue().toString(),600,400);
 
