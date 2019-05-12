@@ -17,7 +17,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#closeWindow" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -32,7 +32,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="aboutMenu" mnemonicParsing="false" onAction="#showAbout" text="About" />
             </items>
           </Menu>
         </menus>
@@ -48,7 +48,7 @@
                         <PropertyValueFactory property="name" />
                     </cellValueFactory>
                 </TableColumn>
-                  <TableColumn id="tableColumn" prefWidth="55.0" text="g/dkg">
+                  <TableColumn id="tableColumn" prefWidth="55.0" text="g">
                       <cellValueFactory>
                           <PropertyValueFactory property="eated" />
                       </cellValueFactory>
@@ -85,6 +85,20 @@
                   <Insets />
                </VBox.margin>
             </DatePicker>
+            <HBox spacing="25.0">
+               <children>
+                  <Button fx:id="delButton" mnemonicParsing="false" onAction="#delClicked" text="Delete">
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Button fx:id="evaulateButton" mnemonicParsing="false" onAction="#evaulateDay" text="Evaluation">
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
             <HBox fx:id="chooseBox" alignment="CENTER" prefHeight="30.0" prefWidth="580.0" spacing="10.0" visible="false">
                <children>
                   <TextField fx:id="nameField" prefHeight="25.0" prefWidth="112.0" promptText="Name">

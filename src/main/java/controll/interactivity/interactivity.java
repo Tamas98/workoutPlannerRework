@@ -2,6 +2,7 @@ package controll.interactivity;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
@@ -20,6 +21,8 @@ public interface interactivity {
 
     void delElement(TableView tableView, String key);
 
+    <T> void fillTable(TableView tableView);
+
     default <T> void listSetup(ListView listView, TextField textField, T[] fillWith){
         listView.getItems().addAll(fillWith);
 
@@ -31,5 +34,10 @@ public interface interactivity {
         log.info("Successfully filled up the given list");
     }
 
-    <T> void fillTable(TableView tableView);
+    default void emptyFields(TextField... fields){
+        for(TextField field:fields){
+            field.setText("");
+        }
+    }
+
 }

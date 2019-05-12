@@ -17,7 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/PrimaryWindow.fxml"));
         primaryStage.setTitle("Workout Planner");
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image(String.valueOf(getClass().getResource("/Images/icon.jpg"))));
+      //  primaryStage.getIcons().add(new Image(String.valueOf(getClass().getResource("/Images/icon.jpg"))));
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setOnCloseRequest(e->{
             e.consume();

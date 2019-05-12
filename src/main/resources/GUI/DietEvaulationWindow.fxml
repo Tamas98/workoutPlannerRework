@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controll.DietEvaulationController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+               <children>
+                  <Label text="Eated Calories" textFill="#f80202">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="calorieSum" alignment="CENTER" text="Label" textAlignment="CENTER" textFill="#f80202">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="175.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="43.0">
+               <children>
+                  <Label text="Eated Carbohydrates" textFill="#e80101">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="carboSum" text="Label" textFill="#e80101">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="175.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="125.0">
+               <children>
+                  <Label text="Eated Sugar" textFill="#f80000">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="sugarSum" text="Label" textFill="#f80000">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="175.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="115.0">
+               <children>
+                  <Label text="Eated Protein" textFill="RED">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="proteinSum" text="Label" textFill="RED">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="175.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+               <children>
+                  <Label text="Eated Fat" textFill="RED">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="fatSum" text="Label" textFill="RED">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="175.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="50.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

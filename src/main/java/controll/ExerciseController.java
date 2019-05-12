@@ -1,17 +1,16 @@
 package controll;
 
 import com.google.gson.reflect.TypeToken;
-import controll.fileHandler.FileHandler;
 import controll.fileHandler.JsonReader;
 import controll.fileHandler.ReadFile;
 import controll.interactivity.ExercisesActivity;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import modell.Exercise;
+import modell.Logic;
 
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -22,12 +21,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-
 public class ExerciseController extends ExercisesActivity implements Initializable {
 
     private Type token = new TypeToken<Map<String, ArrayList<Exercise>>>(){}.getType();
 
     private ReadFile jsonReader = new JsonReader("/Assets/exercises.json",token);
+
+    private Logic logic = new Logic();
 
     @FXML
     private ListView<String> list;
@@ -49,6 +49,10 @@ public class ExerciseController extends ExercisesActivity implements Initializab
 
     @FXML
     private TableView table;
+
+    static int todayExercises;
+
+    static double caloreisBurnt;
 
     /**
      * Called to initialize a controller after its root element has been
@@ -112,6 +116,20 @@ public class ExerciseController extends ExercisesActivity implements Initializab
     private void ifNull(){
         if(allTimeExercises == null)
             allTimeExercises=new HashMap<>();
+    }
+
+    @FXML
+    private void evaulateDay(){
+        todayExercises = logic.sumDailyReps(dailyExerciseList);
+        caloreisBurnt = todayExercises*0.75;
+
+        Window window = new Window();
+
+        Stage stage = window.createWindow("/GUI/ExerciseEvaulationWindow.fxml","Exercises on " + datePicker.getValue().toString(),600,400);
+
+        stage.setResizable(false);
+
+        stage.show();
     }
 
 

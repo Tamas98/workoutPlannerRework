@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import modell.Food;
+import modell.Logic;
 
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -24,6 +26,15 @@ public class DietController extends FoodActivity implements Initializable {
 
     private ReadFile jsonReader = new JsonReader("/Assets/food.json",token);
 
+    private Logic logic = new Logic();
+
+    static Food todaysFoods;
+
+    @FXML
+    private Button delButton;
+
+    @FXML
+    private Button evaulateButton;
 
     @FXML
     private DatePicker datePicker;
@@ -96,17 +107,57 @@ public class DietController extends FoodActivity implements Initializable {
 
         fillTable(foodTable);
 
-        listSetup(foodList,nameField,Food.basicFoodsArrayList.toArray());
+        listSetup(foodList,nameField);
+
+        unitSelector.getItems().add("g");
+        unitSelector.getItems().add("dkg");
+        unitSelector.setValue("g");
     }
 
     @FXML
-    private void datePicked(){}
+    public void delClicked(){
+        delElement(foodTable,datePicker.getValue().toString());
+    }
 
     @FXML
-    private void calculateAndAdd(){}
+    private void datePicked(){
+        getDaily(datePicker.getValue().toString());
+        fillTable(foodTable);
+    }
 
     @FXML
-    private void addElement(){}
+    private void calculateAndAdd(){
+
+        int unit = logic.getUnit(unitSelector.getValue().toString());
+
+        Food choosenFood = logic.findFood(nameField.getText());
+        choosenFood = logic.calculateFood(choosenFood,logic.converter(eatField.getText())*unit);
+
+        addNewElement(choosenFood,datePicker.getValue().toString());
+
+        foodTable.getItems().add(choosenFood);
+
+        emptyFields(nameField,eatField);
+    }
+
+    @FXML
+    private void addElement(){
+
+        Food newFood = Food.builder().name(newName.getText())
+                .calories(logic.converter(calorieField.getText())/100)
+                .carbo(logic.converter(carboField.getText())/100)
+                .sugar(logic.converter(sugarField.getText())/100)
+                .fat(logic.converter(fatField.getText())/100)
+                .protein(logic.converter(proteinField.getText())/100)
+                .build();
+
+        foodList.getItems().add(newName.getText());
+        Food.basicFoodsArrayList.add(newFood);
+
+        emptyFields(newName,calorieField,carboField,sugarField,fatField,proteinField);
+
+        saveBasicFoods();
+    }
 
     public void showChooseBox() {
         if(chooseItem.isSelected()){
@@ -124,7 +175,7 @@ public class DietController extends FoodActivity implements Initializable {
             calcAndAddButton.setVisible(false);
             newFoodBox.setVisible(true);
             addButton.setVisible(true);
-            message.setText("Enter the foods propeties ");
+            message.setText("Enter the foods macros in 100g ");
         }
     }
 
@@ -132,4 +183,28 @@ public class DietController extends FoodActivity implements Initializable {
         if(allTimeMenu == null)
             allTimeMenu=new HashMap<>();
     }
+
+    @FXML
+    private void closeWindow(){
+
+    }
+
+    @FXML
+    private void evaulateDay(){
+
+        Window window = new Window();
+
+        todaysFoods = logic.evaulateDay(allTimeMenu.get(datePicker.getValue().toString()));
+
+        Stage stage = window.createWindow("/GUI/DietEvaulationWindow.fxml","Exercises on " + datePicker.getValue().toString(),600,400);
+
+        stage.setResizable(false);
+
+        stage.setOnCloseRequest(e-> evaulateButton.setDisable(false));
+
+        stage.show();
+    }
+
+    @FXML
+    private void showAbout(){}
 }

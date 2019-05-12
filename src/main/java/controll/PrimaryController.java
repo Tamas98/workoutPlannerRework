@@ -32,7 +32,7 @@ public class PrimaryController {
     private void openWorkout(){
         workoutButton.setDisable(true);
 
-        Stage stage = window.createWindow("/GUI/ExerciseWindow.fxml","Workout Planner",600,400);
+        Stage stage = window.createWindow("/GUI/ExerciseWindow.fxml","Workout Planner",600,450);
 
         stage.setResizable(false);
 

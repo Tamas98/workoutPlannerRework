@@ -22,8 +22,6 @@ public class JsonWriter implements WriteFile {
     @Override
     public Writer createWriter() {
 
-
-
         FileOutputStream outStream = null;
         try {
             outStream = new FileOutputStream(FileHandler.class.getResource(this.filePath).getPath());
