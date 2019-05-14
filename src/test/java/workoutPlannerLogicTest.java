@@ -14,31 +14,31 @@ public class workoutPlannerLogicTest {
     private Logic logic;
 
     @Before
-    void setupTest(){
+    public void setupTest(){
         logic = new Logic();
     }
 
     @After
-    void tearDown(){
+    public void tearDown(){
         logic = null;
     }
 
     @Test
-    void testConverter(){
+    public void testConverter(){
         double test = logic.converter("2.5");
         Assert.assertEquals(2.5,test,0);
     }
 
     @Test
-    void testFindFood(){
-        Food test = logic.findFood("Soup");
+    public void testFindFood(){
+        Food test = logic.findFood("Chicken");
 
         Assert.assertNotNull(test);
-        Assert.assertEquals("Soup",test.getName());
+        Assert.assertEquals("Chicken",test.getName());
     }
 
     @Test
-    void testSumReps(){
+    public void testSumReps(){
         ArrayList<Exercise> testExercises = new ArrayList<>(Arrays.asList(
                 new Exercise("test",20),
                 new Exercise("test2",50),
@@ -51,7 +51,7 @@ public class workoutPlannerLogicTest {
     }
 
     @Test
-    void testMacroCalculator(){
+    public void testMacroCalculator(){
         Food test = new Food("test",1,1,1,1,1,1);
         Food result = logic.calculateFood(test,10);
 
@@ -64,7 +64,7 @@ public class workoutPlannerLogicTest {
     }
 
     @Test
-    void testGetUNit(){
+    public void testGetUNit(){
         int result = logic.getUnit("dkg");
 
         Assert.assertEquals(10,result);
@@ -75,7 +75,7 @@ public class workoutPlannerLogicTest {
     }
 
     @Test
-    void testEvaulate(){
+    public void testEvaulate(){
         ArrayList<Food> testFoods = new ArrayList<>(Arrays.asList(
                 new Food("test",1,1,1,1,1,1),
                 new Food("test2",1,1,1,1,1,1)

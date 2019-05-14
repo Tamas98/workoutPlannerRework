@@ -88,7 +88,7 @@ public class FoodActivity implements interactivity {
         JsonReader jsonReader = new JsonReader("/Assets/basic_food.json", type);
 
         basicFoodList = jsonReader.readFromJson(basicFoodList);
-        log.info("Successfully red in basic foods");
+        log.info("Successfully read in basic foods");
         return basicFoodList;
     }
 

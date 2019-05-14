@@ -25,7 +25,7 @@ public class JsonWriter implements WriteFile {
     public Writer createWriter() {
 
         FileOutputStream outStream = null;
-        
+
         try {
             outStream = new FileOutputStream(System.getProperty("user.home") + this.filePath);
         } catch (FileNotFoundException e) {

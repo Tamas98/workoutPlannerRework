@@ -37,8 +37,10 @@ public class JsonReader implements ReadFile {
         if(!file.exists()){
             try {
                 file.createNewFile();
+                log.info("File successfully created");
             } catch (IOException e) {
                 e.printStackTrace();
+                log.error("Cannot create file!");
             }
         }
 

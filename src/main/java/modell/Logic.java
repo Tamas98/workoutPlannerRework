@@ -1,17 +1,35 @@
 package modell;
 
+import controll.Window;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Logic {
 
+    /**
+     * Finds the food inside the food list by its name.
+     * @param name the name of the food we are looking for
+     * @return the food with its macros
+     */
     public Food findFood(String name){
         return Food.basicFoodsArrayList.stream()
                                         .filter(e -> e.getName().equals(name))
                                         .findFirst().get();
     }
 
+    /**
+     * Converts a String value to a Double.
+     * @param value String value we want to convert
+     * @return the value converted to double
+     */
     public Double converter(String value){
+
+        if(value.length() == 0){
+            Window window = new Window();
+            window.popBox("Enter a number please!","No input");
+        }
+
         try {
             Double target = Double.parseDouble(value);
             return target;
@@ -20,6 +38,11 @@ public class Logic {
         }
     }
 
+    /**
+     *
+     * @param dailyExercises
+     * @return
+     */
     public int sumDailyReps(ArrayList<Exercise> dailyExercises){
         return dailyExercises.stream().map(Exercise::getReps)
                 .collect(Collectors.summingInt(Integer::intValue));
