@@ -38,6 +38,8 @@ public interface interactivity {
         for(TextField field:fields){
             field.setText("");
         }
+
+        log.info("Successfully cleared fields");
     }
 
 }

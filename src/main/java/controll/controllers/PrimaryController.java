@@ -1,4 +1,4 @@
-package controll;
+package controll.controllers;
 
 import controll.Window;
 import javafx.fxml.FXML;

@@ -1,6 +1,7 @@
-package controll;
+package controll.controllers;
 
 import com.google.gson.reflect.TypeToken;
+import controll.Window;
 import controll.fileHandler.JsonReader;
 import controll.fileHandler.ReadFile;
 import controll.interactivity.ExercisesActivity;
@@ -59,7 +60,7 @@ public class ExerciseController extends ExercisesActivity implements Initializab
      * completely processed.
      *
      * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
+     *                  null if the location is not known.
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
     @Override

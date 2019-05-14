@@ -20,10 +20,6 @@ public class Logic {
         }
     }
 
-    public Double sumDailyMacro(ArrayList<Food> todayFoods){
-        return null;
-    }
-
     public int sumDailyReps(ArrayList<Exercise> dailyExercises){
         return dailyExercises.stream().map(Exercise::getReps)
                 .collect(Collectors.summingInt(Integer::intValue));

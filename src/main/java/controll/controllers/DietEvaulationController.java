@@ -1,4 +1,4 @@
-package controll;
+package controll.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +29,7 @@ public class DietEvaulationController extends DietController implements Initiali
      * completely processed.
      *
      * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
+     *                  null if the location is not known.
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
     @Override

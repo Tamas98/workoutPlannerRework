@@ -28,10 +28,14 @@ public class FoodActivity implements interactivity {
 
     @Override
     public void getDaily(String key) {
-        if (allTimeMenu.get(key) != null)
+        if (allTimeMenu.get(key) != null) {
             dailyFoodList = allTimeMenu.get(key);
-        else
+            log.info("Successfully retrieved daily foods");
+        }
+        else {
             dailyFoodList = new ArrayList<>();
+            log.info("An empty list has been initialized");
+        }
     }
 
     @Override
@@ -41,6 +45,8 @@ public class FoodActivity implements interactivity {
         allTimeMenu.put(key, dailyFoodList);
 
         jsonWriter.writeToJson(allTimeMenu);
+
+        log.info("New element successfully added!");
     }
 
     @Override
@@ -60,6 +66,8 @@ public class FoodActivity implements interactivity {
         jsonWriter.writeToJson(allTimeMenu);
 
         selectedData.forEach(alldata::remove);
+
+        log.info("Element successfully removed");
     }
 
     @Override
@@ -73,22 +81,27 @@ public class FoodActivity implements interactivity {
         log.info("Table successfully filled");
     }
 
-    public void readInBasicFoods() {
+    public ArrayList<Food> readInBasicFoods() {
         Type type = new TypeToken<ArrayList<Food>>() {
         }.getType();
 
         JsonReader jsonReader = new JsonReader("/Assets/basic_food.json", type);
 
         basicFoodList = jsonReader.readFromJson(basicFoodList);
+        log.info("Successfully red in basic foods");
+        return basicFoodList;
     }
 
     public void saveBasicFoods() {
         JsonWriter jsonWriter = new JsonWriter("/Assets/basic_food.json");
 
         jsonWriter.writeToJson(Food.basicFoodsArrayList);
+
+        log.info("Basic foods successfully saved to a file");
     }
 
     public void listSetup(ListView listView, TextField textField) {
+
         listView.getItems().addAll(Food.basicFoodsArrayList.stream().map(Food::getName).collect(Collectors.toList()));
 
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

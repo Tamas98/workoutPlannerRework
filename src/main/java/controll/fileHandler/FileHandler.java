@@ -12,8 +12,6 @@ import java.io.Writer;
 
 public interface FileHandler {
 
-    Logic logic = new Logic();
-
     Logger log = LoggerFactory.getLogger(FileHandler.class);
 
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -21,8 +19,10 @@ public interface FileHandler {
     default void closeReader(Reader reader){
         try {
             reader.close();
+            log.info("Reader successfully closed");
         } catch (IOException e) {
             e.printStackTrace();
+            log.error("Error while closing the reader");
         }
     }
 
@@ -30,8 +30,10 @@ public interface FileHandler {
         try {
             writer.flush();
             writer.close();
+            log.info("Writer successfully closed");
         } catch (IOException e) {
             e.printStackTrace();
+            log.error("Error while closing the writer");
         }
     }
 }

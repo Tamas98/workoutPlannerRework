@@ -1,6 +1,7 @@
-package controll;
+package controll.controllers;
 
 import com.google.gson.reflect.TypeToken;
+import controll.Window;
 import controll.fileHandler.JsonReader;
 import controll.fileHandler.ReadFile;
 import controll.interactivity.FoodActivity;
@@ -15,10 +16,7 @@ import modell.Logic;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DietController extends FoodActivity implements Initializable {
 
@@ -91,14 +89,21 @@ public class DietController extends FoodActivity implements Initializable {
      * completely processed.
      *
      * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
+     *                  null if the location is not known.
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         allTimeMenu = jsonReader.readFromJson(allTimeMenu);
 
-        readInBasicFoods();
+        Food.basicFoodsArrayList = readInBasicFoods();
+
+        if(Food.basicFoodsArrayList == null){
+            Food.basicFoodsArrayList = new ArrayList<>(Arrays.asList(
+                    new Food("Fish",1,1,1,1,1,1),
+                    new Food("Chicken",1,1,1,1,1,1)
+            ));
+        }
 
         ifNull();
 

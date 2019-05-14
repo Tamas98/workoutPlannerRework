@@ -3,9 +3,7 @@ package controll.fileHandler;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Type;
 
 @AllArgsConstructor
@@ -21,6 +19,7 @@ public class JsonReader implements ReadFile {
         Reader reader = createReader();
 
         readTo = gson.fromJson(reader,type);
+        log.info("Successfully readed data from file");
 
         closeReader(reader);
 
@@ -29,8 +28,28 @@ public class JsonReader implements ReadFile {
 
     @Override
     public Reader createReader() {
-        InputStream inputStream = FileHandler.class.getResourceAsStream(path);
+        InputStream inputStream = null;
+        File file = new File(System.getProperty("user.home") + this.path);
+
+        if (!file.getParentFile().exists())
+            file.getParentFile().mkdirs();
+
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            inputStream = new FileInputStream(System.getProperty("user.home") + path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         InputStreamReader reader = new InputStreamReader(inputStream);
+
+        log.info("Reader successfully created");
 
         return reader;
     }
