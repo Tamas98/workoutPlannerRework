@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class FoodActivity implements interactivity {
+public class FoodActivity implements Interactivity {
 
     public Map<String, ArrayList<Food>> allTimeMenu;
 

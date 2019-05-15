@@ -2,10 +2,9 @@ package modell;
 
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * Class to store the data of the exercises.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

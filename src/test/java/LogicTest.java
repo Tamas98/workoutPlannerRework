@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class workoutPlannerLogicTest {
+public class LogicTest {
 
     private Logic logic;
 

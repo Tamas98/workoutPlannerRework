@@ -23,7 +23,7 @@ public class ExerciseEvaulationController extends ExerciseController implements 
      *
      * @param location  The location used to resolve relative paths for the root object, or
      *                  null if the location is not known.
-     * @param resources The resources used to localize the root object, or <tt>null</tt> if
+     * @param resources The resources used to localize the root object, or null
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

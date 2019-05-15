@@ -1,17 +1,15 @@
 package controll.interactivity;
 
-import controll.fileHandler.AlternateWriter;
 import controll.fileHandler.JsonWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import modell.Exercise;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ExercisesActivity implements interactivity{
+public class ExercisesActivity implements Interactivity {
 
     public Map<String,ArrayList<Exercise>> allTimeExercises;
 

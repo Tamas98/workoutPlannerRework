@@ -1,19 +1,15 @@
 package controll.interactivity;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import modell.Exercise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public interface interactivity {
+public interface Interactivity {
 
-    Logger log = LoggerFactory.getLogger(interactivity.class);
+    Logger log = LoggerFactory.getLogger(Interactivity.class);
 
     void getDaily(String key);
 

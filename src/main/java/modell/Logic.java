@@ -1,6 +1,6 @@
 package modell;
 
-import controll.Window;
+import controll.controllers.Window;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -39,15 +39,21 @@ public class Logic {
     }
 
     /**
-     *
-     * @param dailyExercises
-     * @return
+     * Summing the exercises done today.
+     * @param dailyExercises the exercises of the day
+     * @return a number,the sum of the reputations today
      */
     public int sumDailyReps(ArrayList<Exercise> dailyExercises){
         return dailyExercises.stream().map(Exercise::getReps)
                 .collect(Collectors.summingInt(Integer::intValue));
     }
 
+    /**
+     * Calculates the eated macros from the food and the eaten amount.
+     * @param choosenFood The food eaten by the user
+     * @param multiple The amount of the eaten food(in gramm)
+     * @return The chossenFood,but with the calculated macros.
+     */
     public Food calculateFood(Food choosenFood,double multiple){
 
         Food calculatedFood = Food.builder()
@@ -63,6 +69,11 @@ public class Logic {
         return calculatedFood;
     }
 
+    /**
+     * Get's the unit the user used
+     * @param selectedUnit unit selected by the user in string
+     * @return the multiplier from the unit.
+     */
     public int getUnit(String selectedUnit){
 
         if(selectedUnit.equals("g")){
@@ -72,6 +83,11 @@ public class Logic {
         }
     }
 
+    /**
+     * Calculate the macros eaten at the given day
+     * @param dailyFoods the list of foods eaten at the selected date
+     * @return food containing the sum of macros.
+     */
     public Food evaulateDay(ArrayList<Food> dailyFoods){
         double calorieSum = dailyFoods.stream().map(Food::getCalories).collect(Collectors.summingDouble(Double::doubleValue));
         double carboSum = dailyFoods.stream().map(Food::getCarbo).collect(Collectors.summingDouble(Double::doubleValue));
